@@ -1,3 +1,121 @@
 body {
   background-color: whitesmoke;
+  font-family:"Barlow";
+  margin: 0 auto;
+  color: rgb(85, 85, 85);
+}
+
+.header-text {
+  font-size: 48px;
+  text-align: center;
+  margin-top: 50px;
+}
+.colorhgpa{
+  color: rgb(113, 214, 113);
+}
+.selcou{
+  font-size: 24px;
+  max-width: 1100px; 
+  margin: 0 auto;
+}
+
+
+.background-gpa{
+  min-height: 200px;
+  max-width: 1200px ;
+  margin: 0 auto;
+  border-radius: 18px;
+  padding: 24px;
+  background-color:rgb(126, 235, 126);
+  max-height: 400px;
+  overflow: auto;
+}
+
+.courseH{
+  font-size: 24px;
+}
+
+.inputBlock{
+  display: grid;
+  grid-template-columns : 1fr 1fr 1fr ;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.calbut{
+  display:flex;
+  justify-content:flex-end;
+  max-width: 1100px;
+  margin: 0 auto;
+  margin-top: 30px;
+}
+
+.button{
+  padding: 3px;
+  background-color:rgb(126, 235, 126) ;
+  border-radius: 10px;
+  margin-right: 20px;
+}
+
+.sid{
+  width: 95%;
+
+}
+
+.sgrade{
+  width: 95%;
+}
+
+.scadit{
+  width: 95%;
+}
+
+.add{
+  margin-right: 20px;
+  padding: 3px;
+  border-radius: 10px;
+  color:rgb(126, 235, 126) ;
+  border: 2px solid rgb(126, 235, 126)  ;
+  transition: 0.3s;
+}
+
+.add:hover{
+  background-color:rgb(126, 235, 126) ;
+  color:rgb(85, 85, 85) ;
+}
+.calshow{
+  border: 5px solid rgb(126, 235, 126);
+  border-radius: 10px;
+  margin: 0 auto;
+  margin-top: 10px ;
+  margin-bottom: 20px;
+  width: 1100px;
+  height: 85px;
+}
+.show{
+  text-align: center;
+  font-size: 48px;
+  
+}
+/* ---------------------------block------------------------------*/
+.delx{
+  color: rgb(228, 99, 99);
+}
+
+.cadded{
+  display:grid;
+  grid-template-columns: 1fr 16px;
+  background-color: whitesmoke;
+  padding: 15px;
+  border-radius: 20px;
+}
+
+.cadded:not(:last-child){
+  margin-bottom: 6px;
+}
+
+
+.scg{
+  display:grid;
+  grid-template-columns: repeat(3,1fr);
 }

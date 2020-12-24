@@ -1,19 +1,27 @@
 import { useState } from "react";
-import { CourseCard } from "./components";
+import { CourseCard } from "./components/CourseCard";
 function App() {
-  const grade = ["A", "B+", "B", "C+", "C", "D+", "D", "F", "W"];
-  const credit = [1, 2, 3];
-
   const [myCourses, setMyCourse] = useState([]);
   const [inputData, setInputData] = useState({});
-  const [GPA, setGPA] = useState(4.0);
+  const [GPA, setGPA] = useState(0);
 
+  const [id, setId] = useState("");
+  const [grade, setGrade] = useState(0);
+  const [credit, setCredit] = useState(0);
   /**
    * Calculate the GPA of current courses
    * @returns the GPA of current courses
    */
-  function calculateGPA() {
+  function calculateGPA(course) {
     // TODO
+    let sum_credit=0 , sum_grade=0
+    course.forEach(e=>{
+      if(parseFloat(e.grade)>=0){
+        sum_credit += parseFloat(e.credit)
+        sum_grade += parseFloat(e.grade)*parseFloat(e.credit) 
+      } 
+    })
+    setGPA(sum_grade/sum_credit)
   }
 
   /**
@@ -24,9 +32,15 @@ function App() {
   function addCourse(event) {
     event.preventDefault();
     // TODO
-
+    let input = {
+      id:id,
+      credit:credit,
+      grade:grade
+    }
+     setMyCourse([...myCourses,input])
     // recalculate GPA
-    calculateGPA();
+    const courses = [...myCourses, input]
+    calculateGPA(courses);
   }
 
   /**
@@ -36,21 +50,66 @@ function App() {
    */
   function onDeleteCourse(id) {
     // TODO
+    setMyCourse(myCourses.filter(e=> e.id !== id))
+    const courses = myCourses.filter(e=> e.id !== id)
+    calculateGPA(courses);
   }
 
+
+  
   return (
-    <div className="container mx-auto h-screen">
-      <h1 className="text-center text-4xl p-3 tracking-widest">
-        GPA CALCULATOR
-      </h1>
-      <div className="h-2/3 md:w-2/4 p-3 rounded-lg mx-auto overflow-auto">
-        <h1 className="text-2xl my-3">My courses</h1>
-        {/* TODO display courses */}
+    <div>
+      <div className="header-text"><h1><b> <span className="colorhgpa">GPA</span>  <span>CALCULATOR</span></b></h1></div>
+      <div className="background-gpa">
+        <h1 className="courseH"><b>My Course</b></h1>
+        <div className="selcou">
+          <h1><b>Select Course</b></h1>
+          {myCourses.map((value)=>{
+            return CourseCard(value,onDeleteCourse) 
+          })}
+        </div>
       </div>
-      {/* TODO add course input form */}
-      {/* TODO display calculated GPA */}
+  
+      <div className="inputBlock">
+        <div>
+          <input placeholder="Subject ID" id="subject-id" className="sid" onChange={(e)=>setId(e.target.value)}></input>
+        </div>
+        <div>
+          <select className ="scadit" onChange={(e)=>setCredit(e.target.value)}>
+             <option selected disabled>Select Credit</option>
+             <option value ="1">1</option>
+             <option value ="2">2</option>
+             <option value ="3">3</option>
+          </select>
+        </div>
+        <div>
+          <select className ="sgrade" onChange={(e)=>setGrade(e.target.value)}>
+             <option selected id ="selected-grade" disabled >Select Grade</option>
+             <option value ="4">  A</option>
+             <option value ="3.5">B+</option>
+             <option value ="3">  B</option>
+             <option value ="2.5">C+</option>
+             <option value ="2">  C</option>
+             <option value ="1.5">D+</option>
+             <option value ="1">  D</option>
+             <option value ="0">  F</option>
+             <option value ="-1"> W</option>
+          </select>
+        </div>
+      </div>
+      <div className="calbut">
+        <button className="add" onClick={addCourse}>add</button>
+        <button className="button">calculate</button>
+      </div>
+      <div className="calshow"><div className="show">GPA {GPA.toFixed(2)}</div></div>
     </div>
   );
+
 }
+     
 
 export default App;
+
+
+
+
