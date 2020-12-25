@@ -23,7 +23,9 @@ function App() {
     })
     setGPA(sum_grade/sum_credit)
   }
-
+  function reset(){
+    setId("")
+  }
   /**
    * Should be called when a course is to be added to the list.
    * After adding the course to the list, the displayed GPA should be updated.
@@ -37,10 +39,12 @@ function App() {
       credit:credit,
       grade:grade
     }
+    
      setMyCourse([...myCourses,input])
     // recalculate GPA
     const courses = [...myCourses, input]
     calculateGPA(courses);
+    reset()
   }
 
   /**
@@ -57,6 +61,7 @@ function App() {
 
   function onClear(e) {
     setMyCourse([])
+    setGPA(0)
   }
 
 
@@ -76,7 +81,7 @@ function App() {
   
       <div className="inputBlock">
         <div>
-          <input placeholder="Subject ID" id="subject-id" className="sid" onChange={(e)=>setId(e.target.value)}></input>
+          <input placeholder="Subject ID" id="subject-id" className="sid" onChange={(e)=>setId(e.target.value)} value={id}></input>
         </div>
         <div>
           <select className ="scadit" onChange={(e)=>setCredit(e.target.value)}>
@@ -88,7 +93,7 @@ function App() {
         </div>
         <div>
           <select className ="sgrade" onChange={(e)=>setGrade(e.target.value)}>
-             <option selected id ="selected-grade" disabled >Select Grade</option>
+             <option selected id ="selected-grade" disabled>Select Grade</option>
              <option value ="4">  A</option>
              <option value ="3.5">B+</option>
              <option value ="3">  B</option>
