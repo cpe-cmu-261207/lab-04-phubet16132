@@ -55,6 +55,10 @@ function App() {
     calculateGPA(courses);
   }
 
+  function onClear(e) {
+    setMyCourse([])
+  }
+
 
   
   return (
@@ -99,7 +103,7 @@ function App() {
       </div>
       <div className="calbut">
         <button className="add" onClick={addCourse}>add</button>
-        <button className="button">calculate</button>
+        <button className="button" onClick={onClear}>clear</button>
       </div>
       <div className="calshow"><div className="show">GPA {GPA.toFixed(2)}</div></div>
     </div>
